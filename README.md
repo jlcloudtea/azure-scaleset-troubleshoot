@@ -6,4 +6,4 @@ git clone https://github.com/jlcloudtea/azure-scaleset-troubleshoot tbscale
 
 cd tbscale
 
-bash setup.sh
+bash run.sh
