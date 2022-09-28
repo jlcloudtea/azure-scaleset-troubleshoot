@@ -16,6 +16,7 @@ az group create \
   --resource-group $RESOURCEGROUP \
   --name webServerScaleSet \
   --image UbuntuLTS \
+  --vm-sku Standard_B1ls \
   --upgrade-policy-mode automatic \
   --custom-data cloud-init.yaml \
   --admin-username $USERNAME \
