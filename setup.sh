@@ -9,8 +9,8 @@ az group create \
   --location westus3 \
   --name $RESOURCEGROUP
   
-  
- #6. carete VM scale set
+#---------------------------------------------------------#
+# Configure the virtual machine scale set
  
  az vmss create \
   --resource-group $RESOURCEGROUP \
@@ -21,11 +21,9 @@ az group create \
   --custom-data cloud-init.yaml \
   --admin-username $USERNAME \
   --generate-ssh-keys
+ 
   
-  #---------------------------------------------------------#
-  # Configure the virtual machine scale set
-  
-  # 1. add a health probe to the load balancer
+ # Add a health probe to the load balancer
   az network lb probe create \
   --lb-name webServerScaleSetLB \
   --resource-group $RESOURCEGROUP \
@@ -34,7 +32,7 @@ az group create \
   --protocol Http \
   --path /
   
-  # 2. configure the load balancer to route HTTP traffic to the instances in the scale set
+ # Configure the load balancer to route HTTP traffic to the instances in the scale set
   az network lb rule create \
   --resource-group $RESOURCEGROUP \
   --name webServerLoadBalancerRuleWeb \
@@ -46,7 +44,7 @@ az group create \
   --frontend-port 80 \
   --protocol tcp
   
-  # Done
+ # Done
 echo '-------------------------------------------------------------'
 echo 'VM Setup Script Completed You can start the troubleshooting'
 echo '-------------------------------------------------------------'
