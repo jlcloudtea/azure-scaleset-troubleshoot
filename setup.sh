@@ -45,7 +45,7 @@ az network lb rule create \
  --protocol tcp
 
 # Setup "Environment"
-az vmss stop --resource-group troubleshoot --name webServerScaleSet --instance-ids 0
+az vmss stop --resource-group troubleshoot --name webServerScaleSet --instance-ids 01
 
 az network nsg create \
   --resource-group troubleshoot \
