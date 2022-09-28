@@ -1,14 +1,12 @@
-RESOURCEGROUP = "Troubleshoot"
-
 az group create \
  --location westus3 \
- --name $RESOURCEGROUP
+ --name troubleshoot
   
 #---------------------------------------------------------#
 # Configure the virtual machine scale set
   
 az vmss create \
- --resource-group $RESOURCEGROUP \
+ --resource-group troubleshoot \
  --name webServerScaleSet \
  --image UbuntuLTS \
  --vm-sku Standard_B1ls \
@@ -21,14 +19,14 @@ az vmss extension set \
  --publisher Microsoft.Azure.Extensions \
  --version 2.0 \
  --name CustomScript \
- --resource-group $RESOURCEGROUP \
+ --resource-group troubleshoot \
  --vmss-name webServerScaleSet \
  --settings @customConfig.json
 
 # Add a health probe to the load balancer
 az network lb probe create \
 --lb-name webServerScaleSetLB \
---resource-group $RESOURCEGROUP \
+--resource-group troubleshoot \
 --name webServerHealth \
 --port 80 \
 --protocol Http \
@@ -36,7 +34,7 @@ az network lb probe create \
 
 # configure the load balancer to route HTTP traffic to the instances in the scale set
 az network lb rule create \
- --resource-group $RESOURCEGROUP \
+ --resource-group troubleshoot \
  --name webServerLoadBalancerRuleWeb \
  --lb-name webServerScaleSetLB \
  --probe-name webServerHealth \
@@ -49,11 +47,11 @@ az network lb rule create \
 # Setup "Environment"
 
 az network nsg create \
-  --resource-group $RESOURCEGROUP \
+  --resource-group troubleshoot \
   --name vmsetnsg
 
 az network nsg rule create \
-  --resource-group $RESOURCEGROUP \
+  --resource-group troubleshoot \
   --name vmsetnsgrule \
   --nsg-name vmsetnsg \
   --protocol tcp \
@@ -67,7 +65,7 @@ az network nsg rule create \
   
 #update the existing subnet
 az network vnet subnet update \
-  --resource-group $RESOURCEGROUP \
+  --resource-group troubleshoot \
   --vnet-name webServerScaleSetVNET \
   --name webServerScaleSetSubnet \
   --network-security-group vmsetnsg
