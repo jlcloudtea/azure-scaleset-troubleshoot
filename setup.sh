@@ -1,9 +1,4 @@
-# user="USERNAME INPUT"
-read -p "Enter user: " USERNAME
-# RESOURCEGROUP = "RESOURCEGROUP INPUT"
-read -p "Enter ResourceGroupName: " RESOURCEGROUP
-
-read -p "Continue? (Y/N): " confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
+RESOURCEGROUP = "Troubleshoot"
 
 az group create \
  --location westus3 \
@@ -18,7 +13,7 @@ az vmss create \
  --image UbuntuLTS \
  --vm-sku Standard_B1ls \
  --upgrade-policy-mode automatic \
- --admin-username $USERNAME \
+ --admin-username azureuser \
  --generate-ssh-keys
   
 #Apply the Custom Script Extension  
