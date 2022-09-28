@@ -45,7 +45,6 @@ az network lb rule create \
  --protocol tcp
 
 # Setup "Environment"
-az vmss stop --resource-group troubleshoot --name webServerScaleSet --instance-ids 01
 
 az network nsg create \
   --resource-group troubleshoot \
@@ -70,6 +69,9 @@ az network vnet subnet update \
   --vnet-name webServerScaleSetVNET \
   --name webServerScaleSetSubnet \
   --network-security-group vmsetnsg
+  
+#update the existing vm
+az vmss stop --resource-group troubleshoot --name webServerScaleSet --instance-ids 0
 
 # Done
 echo '-------------------------------------------------------------'
