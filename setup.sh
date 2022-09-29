@@ -71,7 +71,7 @@ az network vnet subnet update \
   --network-security-group vmsetnsg
   
 #update the existing vm
-InstanceId=`az vmss list-instances -g troubleshoot -n webServerScaleSet --query '[0].InstanceId' --output tsv`
+InstanceId=`az vmss list-instances -g troubleshoot -n webServerScaleSet --query '[0].instanceId' --output tsv`
 az vmss stop --resource-group troubleshoot --name webServerScaleSet --instance-ids $InstanceId
 
 # Done
