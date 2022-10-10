@@ -75,6 +75,7 @@ InstanceId=`az vmss list-instances -g troubleshoot -n webServerScaleSet --query 
 az vmss stop --resource-group troubleshoot --name webServerScaleSet --instance-ids $InstanceId
 
 # Done
-echo '-------------------------------------------------------------'
-echo 'VM Setup Script Completed You can start the troubleshooting'
-echo '-------------------------------------------------------------'
+echo '--------------------------------------------------------------------'
+echo ' VM Setup Script Completed !                                        '                        
+echo ' You can start the troubleshooting in resource group "troubleshoot" '
+echo '--------------------------------------------------------------------'
