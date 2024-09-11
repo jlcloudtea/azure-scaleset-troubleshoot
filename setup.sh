@@ -1,5 +1,5 @@
 az group create \
- --location westus3 \
+ --location eastus \
  --name troubleshoot
   
 #---------------------------------------------------------#
