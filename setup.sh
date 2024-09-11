@@ -8,7 +8,7 @@ az group create \
 az vmss create \
  --resource-group troubleshoot \
  --name webServerScaleSet \
- --image UbuntuLTS \
+ --image Ubuntu2204 \
  --vm-sku Standard_B1ls \
  --upgrade-policy-mode automatic \
  --admin-username azureuser \
